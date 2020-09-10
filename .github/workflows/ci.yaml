@@ -80,7 +80,7 @@ jobs:
 
       # FIXME Is there a more ergonomic way?
       - name: Update Go language version in the module
-        run: go mod edit -go=$(go list -f '{{ $tag := 0 }}{{ range $tag = context.ReleaseTags }}{{ end }}{{ slice $tag 2 }}')
+        run: go mod edit -go=$(go list -f '{{ $tag := 0 }}{{ range $tag = context.ReleaseTags }}{{ end }}{{ slice $tag 2 }}') runtime
 
       # slightly decreases total CI time; see also cleanup.yaml
       - name: Enable Go modules cache
@@ -201,6 +201,10 @@ jobs:
         uses: actions/checkout@v2
         with:
           path: ${{ env.WORKDIR }}
+
+      # FIXME Is there a more ergonomic way?
+      - name: Update Go language version in the module
+        run: go mod edit -go=$(go list -f '{{ $tag := 0 }}{{ range $tag = context.ReleaseTags }}{{ end }}{{ slice $tag 2 }}') runtime
 
       # slightly decreases total CI time; see also cleanup.yaml
       - name: Enable Go modules cache
