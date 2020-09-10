@@ -197,6 +197,9 @@ lint:                                    ## Run linters.
 	bin/go-consistent -pedantic ./... | bin/reviewdog -f=go-consistent -diff='git diff HEAD^'
 
 ci-check-changes:
+	# Revert version change in go.mod.
+	go mod edit -go=1.13
+
 	# Break job if any files were changed during its run (code generation, etc), except go.sum.
 	# `go mod tidy` could remove old checksums from that file, and that's okay on CI,
 	# and actually expected for PRs made by @dependabot.

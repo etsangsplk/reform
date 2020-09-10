@@ -1,6 +1,9 @@
 ---
 name: CI
 on:
+  schedule:
+    # Saturday 8:00, after cleanup
+    - cron: "0 8 * * 6"
   push:
     branches:
       - main
@@ -21,9 +24,9 @@ jobs:
         os:
           - ubuntu-latest
         go-version:
-          - 1.13.x
-          - 1.14.x
-          - 1.15.x
+          - 1.13
+          - "1.14"
+          - 1.15
           - tip
         images:
           - {postgres: "postgres:9.6", mysql: "mysql:5.5"}
