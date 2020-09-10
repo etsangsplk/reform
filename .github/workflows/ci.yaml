@@ -78,11 +78,6 @@ jobs:
         working-directory: ${{ env.WORKDIR }}
         run: docker-compose pull --quiet &
 
-      # FIXME Is there a more ergonomic way?
-      - name: Update Go language version in the module
-        working-directory: ${{ env.WORKDIR }}
-        run: go mod edit -go=$(go list -f '{{ $tag := 0 }}{{ range $tag = context.ReleaseTags }}{{ end }}{{ slice $tag 2 }}' runtime)
-
       # slightly decreases total CI time; see also cleanup.yaml
       - name: Enable Go modules cache
         uses: actions/cache@v2
@@ -108,6 +103,11 @@ jobs:
       - name: Download Go modules
         working-directory: ${{ env.WORKDIR }}
         run: go mod download
+
+      # FIXME Is there a more ergonomic way?
+      - name: Update Go language version in the module
+        working-directory: ${{ env.WORKDIR }}
+        run: go mod edit -go=$(go list -f '{{ $tag := 0 }}{{ range $tag = context.ReleaseTags }}{{ end }}{{ slice $tag 2 }}' runtime)
 
       - name: Check that it is still possible to install reform without modules
         working-directory: ${{ env.WORKDIR }}
@@ -203,11 +203,6 @@ jobs:
         with:
           path: ${{ env.WORKDIR }}
 
-      # FIXME Is there a more ergonomic way?
-      - name: Update Go language version in the module
-        working-directory: ${{ env.WORKDIR }}
-        run: go mod edit -go=$(go list -f '{{ $tag := 0 }}{{ range $tag = context.ReleaseTags }}{{ end }}{{ slice $tag 2 }}' runtime)
-
       # slightly decreases total CI time; see also cleanup.yaml
       - name: Enable Go modules cache
         uses: actions/cache@v2
@@ -230,6 +225,11 @@ jobs:
       - name: Download Go modules
         working-directory: ${{ env.WORKDIR }}
         run: go mod download
+
+      # FIXME Is there a more ergonomic way?
+      - name: Update Go language version in the module
+        working-directory: ${{ env.WORKDIR }}
+        run: go mod edit -go=$(go list -f '{{ $tag := 0 }}{{ range $tag = context.ReleaseTags }}{{ end }}{{ slice $tag 2 }}' runtime)
 
       - name: Run init target
         working-directory: ${{ env.WORKDIR }}
