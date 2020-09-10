@@ -204,7 +204,10 @@ jobs:
 
       # FIXME Is there a more ergonomic way?
       - name: Update Go language version in the module
-        run: go mod edit -go=$(go list -f '{{ $tag := 0 }}{{ range $tag = context.ReleaseTags }}{{ end }}{{ slice $tag 2 }}') runtime
+        run: |
+          pwd
+          ls
+          go mod edit -go=$(go list -f '{{ $tag := 0 }}{{ range $tag = context.ReleaseTags }}{{ end }}{{ slice $tag 2 }}') runtime
 
       # slightly decreases total CI time; see also cleanup.yaml
       - name: Enable Go modules cache
