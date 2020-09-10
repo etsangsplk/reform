@@ -117,12 +117,10 @@ func (s *Person) HasPK() bool {
 }
 
 // SetPK sets record primary key.
+//
+// Prefer direct field assignment where possible: s.ID = pk.
 func (s *Person) SetPK(pk interface{}) {
-	if i64, ok := pk.(int64); ok {
-		s.ID = int32(i64)
-	} else {
-		s.ID = pk.(int32)
-	}
+	s.ID = int32(pk.(int64))
 }
 
 // check interfaces
@@ -235,12 +233,10 @@ func (s *Project) HasPK() bool {
 }
 
 // SetPK sets record primary key.
+//
+// Prefer direct field assignment where possible: s.ID = pk.
 func (s *Project) SetPK(pk interface{}) {
-	if i64, ok := pk.(int64); ok {
-		s.ID = string(i64)
-	} else {
-		s.ID = pk.(string)
-	}
+	s.ID = pk.(string)
 }
 
 // check interfaces
@@ -413,12 +409,10 @@ func (s *IDOnly) HasPK() bool {
 }
 
 // SetPK sets record primary key.
+//
+// Prefer direct field assignment where possible: s.ID = pk.
 func (s *IDOnly) SetPK(pk interface{}) {
-	if i64, ok := pk.(int64); ok {
-		s.ID = int32(i64)
-	} else {
-		s.ID = pk.(int32)
-	}
+	s.ID = int32(pk.(int64))
 }
 
 // check interfaces
@@ -525,12 +519,10 @@ func (s *Constraints) HasPK() bool {
 }
 
 // SetPK sets record primary key.
+//
+// Prefer direct field assignment where possible: s.ID = pk.
 func (s *Constraints) SetPK(pk interface{}) {
-	if i64, ok := pk.(int64); ok {
-		s.ID = string(i64)
-	} else {
-		s.ID = pk.(string)
-	}
+	s.ID = pk.(string)
 }
 
 // check interfaces
@@ -637,12 +629,10 @@ func (s *LegacyPerson) HasPK() bool {
 }
 
 // SetPK sets record primary key.
+//
+// Prefer direct field assignment where possible: s.ID = pk.
 func (s *LegacyPerson) SetPK(pk interface{}) {
-	if i64, ok := pk.(int64); ok {
-		s.ID = int32(i64)
-	} else {
-		s.ID = pk.(int32)
-	}
+	s.ID = int32(pk.(int64))
 }
 
 // check interfaces
